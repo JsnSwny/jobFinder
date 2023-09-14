@@ -1,5 +1,6 @@
-import prisma from "../../lib/prisma";
-import HomePage from "./HomePage";
+import prisma from "@/lib/prisma";
+import HomePage from "../HomePage";
+import getJobs from "@/actions/getJobs";
 
 // async function getPosts() {
 // 	const res = await fetch("https://...");
@@ -11,9 +12,6 @@ export default async function Page() {
 	// Fetch data directly in a Server Component
 	// const recentPosts = await getPosts();
 	// Forward fetched data to your Client Component
-	const data = await prisma.job.findMany({
-		skip: 2,
-		take: 5,
-	});
-	return <HomePage jobs={data} />;
+	const jobs = await getJobs();
+	return <HomePage jobs={jobs} />;
 }

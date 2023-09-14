@@ -1,10 +1,15 @@
 import React from "react";
+import { Job } from "@prisma/client";
 
-const HomePage = ({ jobs }) => {
+interface HomePageProps {
+	jobs: Job[];
+}
+
+const HomePage = ({ jobs }: HomePageProps) => {
 	return (
 		<div>
 			{jobs.map((post) => (
-				<h1>{post.title}</h1>
+				<h1 key={post.id}>{post.title}</h1>
 			))}
 		</div>
 	);
