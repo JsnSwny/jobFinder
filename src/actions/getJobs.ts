@@ -1,9 +1,10 @@
 import prisma from "@/lib/prisma";
 
-const getJobs = async () => {
+const getJobs = async (pageNumber: number = 1, pageSize: number = 10) => {
 	try {
 		const messages = await prisma.job.findMany({
-			take: 5,
+			skip: (pageNumber - 1) * pageSize,
+			take: pageSize,
 		});
 
 		return messages;
