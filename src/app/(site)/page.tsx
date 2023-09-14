@@ -1,17 +1,12 @@
-import prisma from "@/lib/prisma";
-import HomePage from "../HomePage";
 import getJobs from "@/actions/getJobs";
-
-// async function getPosts() {
-// 	const res = await fetch("https://...");
-// 	const posts = await res.json();
-// 	return posts;
-// }
+import JobsList from "../components/JobsList";
 
 export default async function Page() {
-	// Fetch data directly in a Server Component
-	// const recentPosts = await getPosts();
-	// Forward fetched data to your Client Component
 	const jobs = await getJobs();
-	return <HomePage jobs={jobs} />;
+	return (
+		<>
+			<h1 className="font-bold text-3xl">Find Jobs</h1>
+			<JobsList jobs={jobs} />
+		</>
+	);
 }
